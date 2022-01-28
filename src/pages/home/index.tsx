@@ -8,13 +8,20 @@ import { Popup } from "components/popup";
 import { StyledHomePage } from "./style";
 import { Loader } from "components/loader";
 import { Error } from "components/error";
+import { FilterBar } from "components/filterBar";
 
 const Home: FC = () => {
-  const page = 1;
+  const defaultVariables = {
+    name: "",
+    status: "",
+    species: "",
+    type: "",
+    gender: ""
+  };
   const [popup, setPopup] = useState<boolean>(false);
   const [currentCharacter, setCurrentCharacter] = useState<character>();
-  const { loading, error, data } = useQuery(GET_CHARACTERS, {
-    variables: { page }
+  const { loading, error, data, refetch } = useQuery(GET_CHARACTERS, {
+    variables: defaultVariables
   });
   const cardClickHandler = (character: character) => {
     setCurrentCharacter(character);
@@ -22,6 +29,9 @@ const Home: FC = () => {
   };
   const closePopupHandler = () => {
     setPopup(false);
+  };
+  const refetchHandler = (values: { [key: string]: string }) => {
+    refetch({ ...values });
   };
 
   const isDataReady = !loading && !error;
@@ -31,6 +41,7 @@ const Home: FC = () => {
       {isDataReady && (
         <div className="homePage">
           <h1 className="homePage__title">Characters widget</h1>
+          <FilterBar refetch={refetchHandler} />
           {currentCharacter && (
             <Popup isOpen={popup} onClose={closePopupHandler} character={currentCharacter} />
           )}

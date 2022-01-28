@@ -1,5 +1,5 @@
 import { FC } from "react";
-import {StyledCard} from "./style"
+import { StyledCard } from "./style";
 import type { card } from "./type";
 
 const Card: FC<card> = ({ image, name }) => {
