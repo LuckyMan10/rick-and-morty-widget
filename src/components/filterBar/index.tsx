@@ -17,7 +17,7 @@ const FilterBar: FC<filterBar> = ({ onSubmit }) => {
 
   return (
     <StyledFiltredBar>
-      <Formik data-testid="form" initialValues={initialValues} onSubmit={onSubmit}>
+      <Formik id="filter-bar-form" initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, handleChange }) => (
           <Form>
             <div className="fields">
@@ -26,6 +26,7 @@ const FilterBar: FC<filterBar> = ({ onSubmit }) => {
                   <TextField
                     key={`${property}_${index}`}
                     type="text"
+                    data-testid={property}
                     name={property}
                     label={property}
                     value={values[property as keyof graphqlVariables]}

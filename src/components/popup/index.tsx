@@ -5,7 +5,7 @@ import { popup } from "./type";
 
 const Popup: FC<popup> = ({ isOpen, onClose, character }) => {
   return (
-    <Dialog onClose={onClose} open={isOpen}>
+    <Dialog data-testid="dialog" onClose={onClose} open={isOpen}>
       <Content {...character} />
     </Dialog>
   );

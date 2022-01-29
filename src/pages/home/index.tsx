@@ -35,7 +35,7 @@ const Home: FC = () => {
     setPopup(false);
   };
   const searchHandler = (values: graphqlVariables) => {
-    const searchValues = {...values, page: 1};
+    const searchValues = { ...values, page: 1 };
     setCurrentValues(searchValues);
     refetch(searchValues);
   };

@@ -6,7 +6,7 @@ export default {
   moduleDirectories: ["node_modules", "src"],
   verbose: true,
   clearMocks: true,
-  collectCoverage: false,
+  collectCoverage: true,
   setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
   collectCoverageFrom: ["src/**/*.{ts,tsx,js,jsx}", "!src/**/*.d.ts"],
   moduleNameMapper: {

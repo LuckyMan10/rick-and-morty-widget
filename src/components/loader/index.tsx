@@ -6,7 +6,7 @@ const Loader: FC = () => {
   return (
     <StyledLoader>
       <div className="loader">
-        <CircularProgress />
+        <CircularProgress id="loader"/>
       </div>
     </StyledLoader>
   );

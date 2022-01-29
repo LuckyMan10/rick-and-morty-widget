@@ -4,22 +4,24 @@ import { CardContent, Typography, CardMedia, Card } from "@mui/material";
 import { useStyles } from "./mui-styles";
 import { character } from "type";
 
-const Content: FC<character> = ({ image, name, species, status, type, gender }) => {
+const Content: FC<character> = ({origin, image, name, species, status, type, gender }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
-      <CardMedia className={classes.media} image={image} />
-      <CardContent>
-        <Typography gutterBottom variant="h5">
+    <Card data-testid="card" className={classes.root}>
+      <CardMedia data-testid="card-media" className={classes.media} image={image} />
+      <CardContent data-testid="card-content">
+        <Typography data-testid="card-typography" gutterBottom variant="h5">
           {name}
         </Typography>
-        <Typography gutterBottom color="textSecondary">
+        <Typography data-testid="card-typography" gutterBottom color="textSecondary">
           <br />
           Gender: {gender}
           <br />
           Species: {species}
           <br />
           Status: {status}
+          <br />
+          Origin: {origin.name ? origin.name : "?"}
           <br />
           Type: {type ? type : "?"}
           <br />
