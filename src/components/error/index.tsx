@@ -5,8 +5,8 @@ const Error: FC = () => {
   return (
     <StyledError>
       <div className="error">
-        <h1>Error!</h1>
-        <p>Please, reload the page.</p>
+        <h1>Nothing found</h1>
+        <p>Try another query.</p>
       </div>
     </StyledError>
   );

@@ -3,20 +3,22 @@ import { StyledFiltredBar } from "./style";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Form, Formik } from "formik";
+import { graphqlVariables } from "pages/home/type";
 
 type filterBar = {
-  refetch(args: { [key: string]: string }): void;
-}
+  refetch(args: graphqlVariables): void;
+};
 
-const FilterBar: FC<filterBar> = ({refetch}) => {
-  const initialValues: { [key: string]: string } = {
+const FilterBar: FC<filterBar> = ({ refetch }) => {
+  const initialValues: graphqlVariables = {
     name: "",
     status: "",
     species: "",
     type: "",
-    gender: ""
+    gender: "",
+    page: 1
   };
-  const formSubmitHandler = (values: { [key: string]: string }) => {
+  const formSubmitHandler = (values: graphqlVariables) => {
     refetch(values);
   };
 
@@ -26,19 +28,19 @@ const FilterBar: FC<filterBar> = ({refetch}) => {
         {({ values, handleChange }) => (
           <Form>
             <div className="fields">
-            {Object.keys(values).map((property, index) => {
-              return (
-                <TextField
-                  key={`${property}_${index}`}
-                  type="text"
-                  name={property}
-                  label={property}
-                  value={values[property]}
-                  onChange={handleChange}
-                  variant="outlined"
-                />
-              );
-            })}
+              {Object.keys(values).map((property, index) => {
+                return (
+                  <TextField
+                    key={`${property}_${index}`}
+                    type="text"
+                    name={property}
+                    label={property}
+                    value={values[property as keyof graphqlVariables]}
+                    onChange={handleChange}
+                    variant="outlined"
+                  />
+                );
+              })}
             </div>
             <Button variant="contained" type="submit">
               Search

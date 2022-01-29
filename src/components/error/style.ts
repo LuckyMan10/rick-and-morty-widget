@@ -6,14 +6,12 @@ const StyledError = styled.div`
   top: 0;
   left: 0;
   position: absolute;
+  z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
   .error {
     text-align: center;
-    h1 {
-      color: red;
-    }
   }
 `;
 

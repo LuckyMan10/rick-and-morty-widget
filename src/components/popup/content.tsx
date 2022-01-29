@@ -21,7 +21,7 @@ const Content: FC<character> = ({ image, name, species, status, type, gender }) 
           <br />
           Status: {status}
           <br />
-          Type: {type}
+          Type: {type ? type : "?"}
           <br />
         </Typography>
       </CardContent>
