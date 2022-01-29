@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_CHARACTERS } from "graphql/queries/characters";
 import { character } from "type";
@@ -13,18 +13,15 @@ import { graphqlVariables } from "./type";
 import { Pagination } from "components/pagination";
 
 const Home: FC = () => {
-  const [currentValues, setCurrentValues] = useState<graphqlVariables>();
-  useEffect(() => {
-    const defaultVariables: graphqlVariables = {
-      name: "",
-      status: "",
-      species: "",
-      type: "",
-      gender: "",
-      page: 1
-    };
-    setCurrentValues({ ...defaultVariables });
-  }, []);
+  const [currentValues, setCurrentValues] = useState<graphqlVariables>({
+    name: "",
+    status: "",
+    species: "",
+    type: "",
+    gender: "",
+    page: 1
+  });
+
   const [popup, setPopup] = useState<boolean>(false);
   const [currentCharacter, setCurrentCharacter] = useState<character>();
   const { loading, error, data, refetch } = useQuery(GET_CHARACTERS, {
@@ -38,18 +35,20 @@ const Home: FC = () => {
     setPopup(false);
   };
   const searchHandler = (values: graphqlVariables) => {
-    setCurrentValues(values);
-    refetch(values);
+    const searchValues = {...values, page: 1};
+    setCurrentValues(searchValues);
+    refetch(searchValues);
   };
   const changePageHandler = (e: ChangeEvent<unknown>, page: number) => {
     refetch({ ...currentValues, page });
+    window.scrollTo(0, 0);
   };
   const isDataReady = !loading && !error;
   return (
     <StyledHomePage>
       <div className="homePage">
         <h1 className="homePage__title">Characters widget</h1>
-        <FilterBar refetch={searchHandler} />
+        <FilterBar onSubmit={searchHandler} />
         {isDataReady && (
           <>
             {currentCharacter && (
@@ -69,7 +68,7 @@ const Home: FC = () => {
         )}
       </div>
       {loading && <Loader />}
-      { error && <Error /> }
+      {error && <Error />}
     </StyledHomePage>
   );
 };

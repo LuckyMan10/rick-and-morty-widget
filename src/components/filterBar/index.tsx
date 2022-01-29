@@ -4,27 +4,20 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Form, Formik } from "formik";
 import { graphqlVariables } from "pages/home/type";
+import { filterBar } from "./type";
 
-type filterBar = {
-  refetch(args: graphqlVariables): void;
-};
-
-const FilterBar: FC<filterBar> = ({ refetch }) => {
+const FilterBar: FC<filterBar> = ({ onSubmit }) => {
   const initialValues: graphqlVariables = {
     name: "",
     status: "",
     species: "",
     type: "",
-    gender: "",
-    page: 1
-  };
-  const formSubmitHandler = (values: graphqlVariables) => {
-    refetch(values);
+    gender: ""
   };
 
   return (
     <StyledFiltredBar>
-      <Formik initialValues={initialValues} onSubmit={formSubmitHandler}>
+      <Formik data-testid="form" initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, handleChange }) => (
           <Form>
             <div className="fields">
@@ -42,7 +35,7 @@ const FilterBar: FC<filterBar> = ({ refetch }) => {
                 );
               })}
             </div>
-            <Button variant="contained" type="submit">
+            <Button variant="contained" data-testid="submit" type="submit">
               Search
             </Button>
           </Form>
