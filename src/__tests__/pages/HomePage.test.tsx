@@ -6,22 +6,6 @@ import userEvent from "@testing-library/user-event";
 import { mocks } from "__tests__/mocks/graphql";
 import { configure, mount } from "enzyme";
 
-const character = {
-  name: "Abradolf Lincler",
-  status: "unknown",
-  species: "Human",
-  type: "Genetic experiment",
-  gender: "Male",
-  image: "Image url",
-  location: {
-    name: "Location"
-  },
-  origin: {
-    name: "Origin"
-  },
-  id: 1
-};
-
 const setUp = () =>
   mount(
     <MockedProvider mocks={mocks}>
