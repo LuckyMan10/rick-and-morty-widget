@@ -1,10 +1,10 @@
 import { Home } from "pages/home";
-import { getByTestId, queryByTestId, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import * as Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import userEvent from "@testing-library/user-event";
 import { mocks } from "__tests__/mocks/graphql";
-import { shallow, configure, mount } from "enzyme";
+import { configure, mount } from "enzyme";
 
 const character = {
   name: "Abradolf Lincler",
