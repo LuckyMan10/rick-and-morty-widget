@@ -4,7 +4,7 @@ import "font/index.scss";
 
 const App: FC = () => {
   return (
-    <div className="App">
+    <div data-testid="App" className="App">
       <Home />
     </div>
   );

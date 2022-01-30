@@ -11,6 +11,9 @@ const character = {
   image: "character image",
   origin: {
     name: "character origin name"
+  },
+  location: {
+    name: "character location name"
   }
 };
 
@@ -50,11 +53,12 @@ describe("Popup component", () => {
 
   it("Element must have character name, gender, species, origin, status and type", () => {
     render(<Popup character={character} onClose={onClose} isOpen={isOpen} />);
-    expect(screen.getByText(/character.name/i)).toBeInTheDocument();
-    expect(screen.getByText(/character.status/i)).toBeInTheDocument();
-    expect(screen.getByText(/character.species/i)).toBeInTheDocument();
-    expect(screen.getByText(/character.type/i)).toBeInTheDocument();
-    expect(screen.getByText(/character.gender/i)).toBeInTheDocument();
-    expect(screen.getByText(/character.origin.name/i)).toBeInTheDocument();
+    expect(screen.getByText(/character name/i)).toBeInTheDocument();
+    expect(screen.getByText(/character species/i)).toBeInTheDocument();
+    expect(screen.getByText(/character type/i)).toBeInTheDocument();
+    expect(screen.getByText(/character status/i)).toBeInTheDocument();
+    expect(screen.getByText(/character gender/i)).toBeInTheDocument();
+    expect(screen.getByText(/character origin name/i)).toBeInTheDocument();
+    expect(screen.getByText(/character location name/i)).toBeInTheDocument();
   });
 });

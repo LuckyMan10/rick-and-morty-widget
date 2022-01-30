@@ -6,6 +6,9 @@ export type character = {
   type: string;
   gender: string;
   image: string;
+  location: {
+    name: string;
+  }
   origin: {
     name: string;
   };

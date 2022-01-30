@@ -45,26 +45,26 @@ const Home: FC = () => {
   };
   const isDataReady = !loading && !error;
   return (
-    <StyledHomePage>
+    <StyledHomePage data-testid="home-page">
       <div className="homePage">
         <h1 className="homePage__title">Characters widget</h1>
         <FilterBar onSubmit={searchHandler} />
         {isDataReady && (
-          <>
+          <div data-testid="homePage-content">
             {currentCharacter && (
               <Popup isOpen={popup} onClose={closePopupHandler} character={currentCharacter} />
             )}
-            <div className="homePage__cards">
+            <div data-testid="homePage-cards" className="homePage__cards">
               {data.characters.results.map((character: character, index: number) => {
                 return (
-                  <div onClick={() => cardClickHandler(character)} key={`${character.id}_${index}`}>
+                  <div data-testid="card-wrapper" onClick={() => cardClickHandler(character)} key={`${character.id}_${index}`}>
                     <Card image={character.image} name={character.name} />
                   </div>
                 );
               })}
             </div>
             <Pagination pages={data.characters.info.pages} changePageHandler={changePageHandler} />
-          </>
+          </div>
         )}
       </div>
       {loading && <Loader />}
