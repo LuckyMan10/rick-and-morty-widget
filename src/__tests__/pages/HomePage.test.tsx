@@ -76,5 +76,4 @@ describe("Home component", () => {
       expect(popupOpen).toBeTruthy();
     });
   });
-
 });

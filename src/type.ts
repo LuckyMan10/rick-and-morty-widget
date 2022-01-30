@@ -8,7 +8,7 @@ export type character = {
   image: string;
   location: {
     name: string;
-  }
+  };
   origin: {
     name: string;
   };

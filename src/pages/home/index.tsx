@@ -57,7 +57,10 @@ const Home: FC = () => {
             <div data-testid="homePage-cards" className="homePage__cards">
               {data.characters.results.map((character: character, index: number) => {
                 return (
-                  <div data-testid="card-wrapper" onClick={() => cardClickHandler(character)} key={`${character.id}_${index}`}>
+                  <div
+                    data-testid="card-wrapper"
+                    onClick={() => cardClickHandler(character)}
+                    key={`${character.id}_${index}`}>
                     <Card image={character.image} name={character.name} />
                   </div>
                 );
